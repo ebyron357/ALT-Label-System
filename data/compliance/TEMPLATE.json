@@ -1,0 +1,28 @@
+{
+  "_comment": "Copy to products/{sku_id}_{flavor_id}.json and populate with Proleve-supplied data only",
+  "verified": false,
+  "product_id": "alternative_session_5mg_lychee_sweet_tea",
+  "nutrition_facts": {
+    "serving_size": "1 can (355 mL)",
+    "servings_per_container": "1",
+    "calories": "REQUIRED_FROM_PROLEVE",
+    "nutrients": [
+      {
+        "name": "Total Fat",
+        "amount": "REQUIRED_FROM_PROLEVE",
+        "daily_value": "REQUIRED_FROM_PROLEVE"
+      }
+    ]
+  },
+  "ingredients": "REQUIRED_FROM_PROLEVE — full statement, descending by weight",
+  "barcode": {
+    "upc": "000000000000",
+    "type": "upc_a"
+  },
+  "qr_url": "https://AlternativeBev.com/lab-results",
+  "lot_number": "PER_PRODUCTION_RUN",
+  "batch_number": "PER_PRODUCTION_RUN",
+  "best_by": "PER_PRODUCTION_RUN",
+  "state_warnings": [],
+  "thc_statement": "REQUIRED_FROM_PROLEVE"
+}

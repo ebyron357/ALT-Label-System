@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ALTERNATIVE Compliance Data",
+  "description": "Proleve-supplied compliance data required for production label generation. No estimated or placeholder values permitted.",
+  "type": "object",
+  "required": [
+    "verified",
+    "product_id",
+    "nutrition_facts",
+    "ingredients",
+    "barcode",
+    "state_warnings"
+  ],
+  "properties": {
+    "verified": {
+      "type": "boolean",
+      "description": "Must be true — confirms data is Proleve-supplied and approved for production"
+    },
+    "product_id": {
+      "type": "string"
+    },
+    "nutrition_facts": {
+      "type": "object",
+      "required": ["serving_size", "servings_per_container", "calories", "nutrients"],
+      "properties": {
+        "serving_size": { "type": "string" },
+        "servings_per_container": { "type": "string" },
+        "calories": { "type": "string" },
+        "nutrients": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "amount", "daily_value"],
+            "properties": {
+              "name": { "type": "string" },
+              "amount": { "type": "string" },
+              "daily_value": { "type": ["string", "null"] }
+            }
+          }
+        }
+      }
+    },
+    "ingredients": {
+      "type": "string",
+      "description": "Full ingredient statement, descending by weight"
+    },
+    "barcode": {
+      "type": "object",
+      "required": ["upc", "type"],
+      "properties": {
+        "upc": { "type": "string", "pattern": "^[0-9]{12}$" },
+        "type": { "type": "string", "enum": ["upc_a", "ean_13"] }
+      }
+    },
+    "qr_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL for lab results / COA landing page"
+    },
+    "lot_number": { "type": "string" },
+    "batch_number": { "type": "string" },
+    "best_by": { "type": "string" },
+    "state_warnings": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "thc_statement": { "type": "string" }
+  },
+  "additionalProperties": false
+}

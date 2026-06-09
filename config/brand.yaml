@@ -1,0 +1,71 @@
+# ALTERNATIVE™ Production Master v1 — Brand Configuration
+# Refinement spec — NOT a redesign
+
+brand:
+  name: "ALTERNATIVE™"
+  tagline: "A NEW STATE OF MIND"
+  positioning: "HEMP-DERIVED THC BEVERAGE"
+  website: "AlternativeBev.com"
+
+canvas:
+  width_mm: 182.22
+  height_mm: 148.0
+  dpi: 300
+  bleed_mm: 3.175  # 0.125"
+  safe_zone_mm: 4.0
+
+colors:
+  matte_black:
+    cmyk: [0, 0, 0, 100]
+    hex: "#1A1A1A"
+  warm_off_white:
+    cmyk: [0, 3, 8, 4]
+    hex: "#F5F0E8"
+  champagne_gold:  # Lychee Sweet Tea accent
+    cmyk: [0, 15, 35, 15]
+    hex: "#C9A86C"
+  deep_amber:  # Passion Fruit accent
+    cmyk: [0, 45, 75, 25]
+    hex: "#B87333"
+
+typography:
+  # Hierarchy scale factors relative to base (pt)
+  tagline: 7.5
+  a_symbol_scale: 0.875  # reduced 12.5%
+  brand_name_scale: 1.225  # increased 22.5%
+  positioning: 6.5
+  sku: 9.0
+  thc_content: 22.0  # largest product-specific
+  thc_subtext: 8.0
+  flavor_scale: 1.35  # increased 35%
+  net_contents: 7.0
+  compliance_body: 5.5
+  compliance_heading: 6.5
+
+manufacturing:
+  manufactured_by: "Proleve Brands"
+  manufactured_for: "Invictus Wellness LLC"
+  address:
+    - "11624 Red Bridge Rd"
+    - "Locust, NC 28097"
+
+qr_section:
+  heading_lines:
+    - "SCAN FOR"
+    - "LAB RESULTS"
+    - "INGREDIENTS"
+    - "PRODUCT INFO"
+
+warning_panel:
+  heading: "WARNING:"
+  lines:
+    - "For adults 21 years of age or older."
+    - "Keep out of reach of children."
+    - "Do not drive or operate machinery after use."
+    - "Do not use if pregnant or breastfeeding."
+    - "Intoxicating effects may be delayed."
+    - "Consume responsibly."
+
+active_ingredient:
+  label: "Active Ingredient:"
+  substance: "Hemp-Derived Delta-9 THC"
