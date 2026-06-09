@@ -54,6 +54,15 @@ Output: `output/syrup_production/`
 
 ---
 
+## Final Manufacturing Readiness Review
+
+```bash
+python3 scripts/manufacturing_readiness_audit.py
+```
+
+Full report: [docs/FINAL_MANUFACTURING_READINESS_REVIEW.md](docs/FINAL_MANUFACTURING_READINESS_REVIEW.md)  
+Checklist database: `data/manufacturing/checklists.csv`
+
 ## Final Production Lock v3.0
 
 **Launch Readiness Score: 7.4/10** — Design frozen; retail inventory hold until CRITICAL items resolved.
