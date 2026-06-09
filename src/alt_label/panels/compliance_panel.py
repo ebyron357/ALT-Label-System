@@ -26,6 +26,7 @@ def render_compliance_panel(
     _render_qr_section(c, layout, brand, compliance, typo)
     _render_barcode_zone(c, layout, compliance)
     _render_website(c, layout, brand, typo)
+    _render_thc_declaration(c, layout, sku, typo)
     _render_active_ingredient(c, layout, brand, sku, typo)
     _render_manufacturing(c, layout, brand, typo)
     _render_warning(c, layout, brand, typo)
@@ -35,6 +36,7 @@ def render_compliance_panel(
         _render_ingredients(c, layout, compliance, typo)
         if compliance.get("state_warnings"):
             _render_state_warnings(c, layout, compliance["state_warnings"], typo)
+
     _render_lot_areas(c, layout, compliance, typo)
 
 
@@ -47,7 +49,8 @@ def _render_qr_section(
 ) -> None:
     zone = layout.qr_zone
     qr_size = min(zone.height * 0.65, zone.width * 0.45)
-    quiet = qr_size * 0.12
+    quiet_ratio = brand.get("qr_section", {}).get("quiet_zone_ratio", 0.12)
+    quiet = qr_size * quiet_ratio
 
     url = (compliance or {}).get("qr_url", f"https://{brand['brand']['website']}")
     qr = qrcode.QRCode(version=1, box_size=10, border=4)
@@ -76,7 +79,6 @@ def _render_barcode_zone(
     layout: LabelLayout,
     compliance: dict | None,
 ) -> None:
-    """Protected barcode zone — render bars only when UPC is assigned."""
     zone = layout.barcode_zone
     if compliance and compliance.get("verified") and compliance.get("barcode", {}).get("upc"):
         upc = compliance["barcode"]["upc"]
@@ -126,6 +128,18 @@ def _render_website(c: Canvas, layout: LabelLayout, brand: dict, typo: dict) -> 
     c.drawString(zone.x, zone.y + 2, brand["brand"]["website"])
 
 
+def _render_thc_declaration(
+    c: Canvas,
+    layout: LabelLayout,
+    sku: dict,
+    typo: dict,
+) -> None:
+    y = layout.nutrition_zone.y + layout.nutrition_zone.height + 6
+    c.setFillColor(WARM_OFF_WHITE)
+    c.setFont("Helvetica", typo["compliance_body"] - 0.5)
+    c.drawString(layout.info_panel.x, y, sku.get("thc_line", ""))
+
+
 def _render_ingredients(
     c: Canvas,
     layout: LabelLayout,
@@ -138,9 +152,16 @@ def _render_ingredients(
     c.drawString(layout.info_panel.x, y, "Ingredients:")
     y -= typo["compliance_body"] * 1.2
     c.setFont("Helvetica", typo["compliance_body"] - 0.5)
-    for line in _wrap_text(compliance["ingredients"], 52)[:5]:
-        c.drawString(layout.info_panel.x, y, line)
-        y -= typo["compliance_body"] * 1.1
+
+    lines = compliance.get("ingredients_lines")
+    if lines:
+        for line in lines[:9]:
+            c.drawString(layout.info_panel.x, y, line)
+            y -= typo["compliance_body"] * 1.05
+    else:
+        for line in _wrap_text(compliance["ingredients"], 52)[:5]:
+            c.drawString(layout.info_panel.x, y, line)
+            y -= typo["compliance_body"] * 1.1
 
 
 def _render_active_ingredient(
@@ -223,16 +244,16 @@ def _render_lot_areas(
     compliance: dict | None,
     typo: dict,
 ) -> None:
-    """Preserve lot / batch / best-by areas without decorative separators."""
-    y = layout.info_panel.y + 4
+    zone = layout.lot_zone
+    y = zone.y + zone.height - typo["compliance_body"] + 2
     c.setFillColor(WARM_OFF_WHITE)
     c.setFont("Helvetica", typo["compliance_body"] - 1)
     lot = (compliance or {}).get("lot_number", "")
     batch = (compliance or {}).get("batch_number", "")
     best_by = (compliance or {}).get("best_by", "")
-    c.drawString(layout.info_panel.x, y, f"Lot: {lot}" if lot else "Lot:")
-    c.drawString(layout.info_panel.x + 70, y, f"Batch: {batch}" if batch else "Batch:")
-    c.drawString(layout.info_panel.x + 155, y, f"Best By: {best_by}" if best_by else "Best By:")
+    c.drawString(zone.x, y, f"Lot: {lot}" if lot else "Lot:")
+    c.drawString(zone.x + 70, y, f"Batch: {batch}" if batch else "Batch:")
+    c.drawString(zone.x + 155, y, f"Best By: {best_by}" if best_by else "Best By:")
 
 
 def _wrap_text(text: str, width: int) -> list[str]:

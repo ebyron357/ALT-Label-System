@@ -45,6 +45,8 @@ def _merge_compliance(sku_id: str, flavor_id: str) -> dict[str, Any] | None:
             "qr_url": "https://AlternativeBev.com/lab-results",
             "state_warnings": [],
         }
+        if flavor_data.get("ingredients_lines"):
+            data["ingredients_lines"] = flavor_data["ingredients_lines"]
     else:
         return None
 

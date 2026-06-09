@@ -1,4 +1,4 @@
-"""Main label PDF renderer — Retail Master Lock v1.0."""
+"""Main label PDF renderer — Retail Master Lock v2.0."""
 
 from pathlib import Path
 
@@ -43,8 +43,10 @@ def render_label(
     output_path.parent.mkdir(parents=True, exist_ok=True)
     c = canvas.Canvas(str(output_path), pagesize=(layout.width, layout.height))
     c.setTitle(f"ALTERNATIVE {sku['name']} {flavor['name']}")
-    c.setAuthor("ALT-Label-System v1.0")
+    c.setAuthor("ALT-Label-System v2.0")
+    c.setSubject("Production Master Lock v2.0 — 12oz Sleek Can")
 
+    # Full artboard matte black including bleed
     c.setFillColor(MATTE_BLACK)
     c.rect(0, 0, layout.width, layout.height, fill=1, stroke=0)
 

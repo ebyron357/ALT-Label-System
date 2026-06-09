@@ -1,47 +1,51 @@
 # ALT-Label-System
 
-Code-driven packaging and label generation for **ALTERNATIVE™** — Retail Master Lock v1.0.
+**ALTERNATIVE™ Final Prepress + Retail Master Lock v2.0**
 
-Refines existing can artwork into a production-ready, nationally scalable 12oz sleek label. **Not a redesign.**
+Code-driven label generation for 12oz sleek cans. Refinement and production preparation — **not a redesign**.
 
-## Shelf Priority (1-second recognition)
+## Shelf Priority (1-second test)
 
 1. **ALTERNATIVE™** — dominant wordmark
-2. **THC strength** — single-line callout (`5MG HEMP-DERIVED THC PER CAN`)
+2. **THC strength** — single-line SKU callout
 3. **Flavor** — LYCHEE SWEET TEA / PASSION FRUIT
 
-## Quick Start
+## Production Export (8 PDFs)
 
 ```bash
 pip install -r requirements.txt
-python3 scripts/generate_labels.py --mode production
+python3 scripts/export_production.py
 python3 scripts/validate_spec.py
 ```
 
-Generates 8 PDFs (4 SKUs × 2 flavors) at `output/labels/`.
+Output: `output/production_v2/` + `MANIFEST.json`
 
-### PDF/X-1a
+### Deliverables
 
-```bash
-python3 scripts/generate_labels.py --mode production --pdfx
-```
+| Flavor | SKUs |
+|--------|------|
+| Lychee Sweet Tea | Session 5mg · Social 10mg · Reserve 50mg · Reserve 100mg |
+| Passion Fruit | Session 5mg · Social 10mg · Reserve 50mg · Reserve 100mg |
 
-## Locked Systems
+## Audits (v2.0)
 
-| SKUs | SESSION™ 5mg · SOCIAL™ 10mg · RESERVE™ 50mg · RESERVE™ 100mg |
-| Flavors | LYCHEE SWEET TEA · PASSION FRUIT |
-| No 20MG | Permanently excluded |
+- **Compliance audit** — nutrition, ingredients, THC, warnings, QR, barcode/lot flags
+- **Prepress audit** — bleed, CMYK, fonts, artboard dimensions
+- **Hierarchy QC** — readability at 100% / 50% / 25% / 10%
 
-## Manufacturer Data
+## Manufacturer Data (exact)
 
-Nutrition and ingredients use **exact manufacturer-provided values** per flavor. See [data/compliance/README.md](data/compliance/README.md).
+| Flavor | Calories | Ingredients |
+|--------|----------|-------------|
+| Passion Fruit | 0 | 3 lines — manufacturer format |
+| Lychee Sweet Tea | 20 | 9 lines — manufacturer format |
 
-## Cleanup Pass
+## Print Spec
 
-No decorative diamonds, dots, borders, separators, or filler graphics. Functional elements only.
+- Trim: 182.22mm × 148mm + 3.175mm bleed
+- CMYK · 300 DPI · PDF/X-1a (`--pdfx` or via export script)
+- No decorative elements · No AI artifacts · No 20MG
 
-## Spec
+## Pre-Press Warnings (expected)
 
-- Canvas: 182.22mm × 148mm · CMYK · 300 DPI
-- Matte black · warm off-white · flavor accent (gold/amber reduced to brand + THC + highlights)
-- Manufactured By: Proleve · Manufactured For: Invictus Wellness LLC
+UPC barcodes, lot/batch/best-by values, and state-specific warnings are flagged but do not block export — zones are preserved for production run assignment.

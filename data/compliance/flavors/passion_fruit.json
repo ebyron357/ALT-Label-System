@@ -7,5 +7,10 @@
     "calories": "0",
     "nutrients": []
   },
-  "ingredients": "Carbonated Water, Natural Passion Fruit Flavor, Hemp-Derived THC"
+  "ingredients": "Carbonated Water, Natural Passion Fruit Flavor, Hemp-Derived THC",
+  "ingredients_lines": [
+    "Carbonated Water",
+    "Natural Passion Fruit Flavor",
+    "Hemp-Derived THC"
+  ]
 }

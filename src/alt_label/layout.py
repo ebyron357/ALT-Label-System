@@ -1,4 +1,4 @@
-"""Label layout zones for 12oz sleek can — 182.22mm × 148mm."""
+"""Label layout — trim + bleed zones for 12oz sleek can."""
 
 from dataclasses import dataclass
 
@@ -23,8 +23,11 @@ class Rect:
 
 @dataclass
 class LabelLayout:
+    """Full artboard including bleed; trim_box is the finished label size."""
     width: float
     height: float
+    bleed_pt: float
+    trim_box: Rect
     safe: Rect
     front_panel: Rect
     info_panel: Rect
@@ -33,26 +36,34 @@ class LabelLayout:
     warning_zone: Rect
     nutrition_zone: Rect
     manufacturing_zone: Rect
+    lot_zone: Rect
 
 
 def build_layout() -> LabelLayout:
     brand = load_brand()
-    w = mm_to_pt(brand["canvas"]["width_mm"])
-    h = mm_to_pt(brand["canvas"]["height_mm"])
+    trim_w = mm_to_pt(brand["canvas"]["width_mm"])
+    trim_h = mm_to_pt(brand["canvas"]["height_mm"])
+    bleed_pt = mm_to_pt(brand["canvas"]["bleed_mm"])
     safe_inset = mm_to_pt(brand["canvas"]["safe_zone_mm"])
 
-    safe = Rect(safe_inset, safe_inset, w - 2 * safe_inset, h - 2 * safe_inset)
+    full_w = trim_w + 2 * bleed_pt
+    full_h = trim_h + 2 * bleed_pt
+    trim_box = Rect(bleed_pt, bleed_pt, trim_w, trim_h)
 
-    # Front hero panel — left 42% of safe area
+    safe = Rect(
+        trim_box.x + safe_inset,
+        trim_box.y + safe_inset,
+        trim_w - 2 * safe_inset,
+        trim_h - 2 * safe_inset,
+    )
+
     front_w = safe.width * 0.42
     front_panel = Rect(safe.x, safe.y, front_w, safe.height)
 
-    # Information / compliance panel — right 58%
     info_x = safe.x + front_w + mm_to_pt(2)
     info_w = safe.x + safe.width - info_x
     info_panel = Rect(info_x, safe.y, info_w, safe.height)
 
-    # Protected zones per spec
     barcode_zone = Rect(
         info_panel.x + info_panel.width * 0.55,
         safe.y + safe.height * 0.02,
@@ -83,10 +94,18 @@ def build_layout() -> LabelLayout:
         info_panel.width * 0.55,
         safe.height * 0.08,
     )
+    lot_zone = Rect(
+        info_panel.x,
+        safe.y - safe_inset + 2,
+        info_panel.width,
+        mm_to_pt(6),
+    )
 
     return LabelLayout(
-        width=w,
-        height=h,
+        width=full_w,
+        height=full_h,
+        bleed_pt=bleed_pt,
+        trim_box=trim_box,
         safe=safe,
         front_panel=front_panel,
         info_panel=info_panel,
@@ -95,4 +114,5 @@ def build_layout() -> LabelLayout:
         warning_zone=warning_zone,
         nutrition_zone=nutrition_zone,
         manufacturing_zone=manufacturing_zone,
+        lot_zone=lot_zone,
     )

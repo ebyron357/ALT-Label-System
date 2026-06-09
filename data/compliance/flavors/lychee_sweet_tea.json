@@ -7,5 +7,16 @@
     "calories": "20",
     "nutrients": []
   },
-  "ingredients": "Water, Organic Cane Sugar, Natural Lychee Flavoring, Citric Acid, Malic Acid, Tartaric Acid, Tea Flavoring, Potassium Sorbate, Hemp-Derived Delta-9 THC"
+  "ingredients": "Water, Organic Cane Sugar, Natural Lychee Flavoring, Citric Acid, Malic Acid, Tartaric Acid, Tea Flavoring, Potassium Sorbate, Hemp-Derived Delta-9 THC",
+  "ingredients_lines": [
+    "Water",
+    "Organic Cane Sugar",
+    "Natural Lychee Flavoring",
+    "Citric Acid",
+    "Malic Acid",
+    "Tartaric Acid",
+    "Tea Flavoring",
+    "Potassium Sorbate",
+    "Hemp-Derived Delta-9 THC"
+  ]
 }

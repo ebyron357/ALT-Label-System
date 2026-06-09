@@ -1,5 +1,7 @@
-# ALTERNATIVE™ Retail Master Lock v1.0 — Brand Configuration
+# ALTERNATIVE™ Final Prepress + Retail Master Lock v2.0
 # Refinement pass — NOT a redesign
+
+version: "2.0"
 
 brand:
   name: "ALTERNATIVE™"
@@ -11,32 +13,28 @@ canvas:
   width_mm: 182.22
   height_mm: 148.0
   dpi: 300
-  bleed_mm: 3.175  # 0.125"
+  bleed_mm: 3.175
   safe_zone_mm: 4.0
 
 colors:
   matte_black:
     cmyk: [0, 0, 0, 100]
-    hex: "#1A1A1A"
   warm_off_white:
     cmyk: [0, 3, 8, 4]
-    hex: "#F5F0E8"
-  champagne_gold:  # Lychee Sweet Tea accent
+  champagne_gold:
     cmyk: [0, 15, 35, 15]
-    hex: "#C9A86C"
-  deep_amber:  # Passion Fruit accent
+  deep_amber:
     cmyk: [0, 45, 75, 25]
-    hex: "#B87333"
 
 typography:
   tagline: 7.5
-  a_symbol_scale: 0.90       # reduced 10%
-  brand_name_scale: 1.225    # increased ~22.5%
-  brand_name_spacing: 1.6    # extra spacing around wordmark
+  a_symbol_scale: 0.90
+  brand_name_scale: 1.225
+  brand_name_spacing: 1.6
   positioning: 6.5
   sku: 9.0
-  thc_content: 11.0          # single-line THC callout
-  flavor_scale: 1.35         # increased 35%
+  thc_content: 11.0
+  flavor_scale: 1.35
   flavor_base: 8.5
   net_contents: 7.0
   compliance_body: 5.5
@@ -57,6 +55,7 @@ qr_section:
     - "LAB RESULTS"
     - "INGREDIENTS"
     - "PRODUCT INFO"
+  quiet_zone_ratio: 0.12
 
 warning_panel:
   heading: "WARNING:"
@@ -71,3 +70,5 @@ warning_panel:
 active_ingredient:
   label: "Active Ingredient"
   substance: "Hemp-Derived Delta-9 THC"
+
+net_contents: "12 FL OZ (355 mL)"

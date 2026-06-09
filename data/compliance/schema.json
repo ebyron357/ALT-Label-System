@@ -1,7 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "ALTERNATIVE Compliance Data",
-  "description": "Manufacturer-provided compliance data. No estimated or placeholder values.",
+  "title": "ALTERNATIVE Compliance Data v2.0",
   "type": "object",
   "required": [
     "verified",
@@ -11,10 +10,7 @@
     "state_warnings"
   ],
   "properties": {
-    "verified": {
-      "type": "boolean",
-      "description": "Must be true for production export"
-    },
+    "verified": { "type": "boolean" },
     "product_id": { "type": "string" },
     "source": { "type": "string" },
     "nutrition_facts": {
@@ -39,6 +35,11 @@
       }
     },
     "ingredients": { "type": "string" },
+    "ingredients_lines": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Manufacturer line-by-line ingredient formatting"
+    },
     "barcode": {
       "type": "object",
       "properties": {

@@ -1,4 +1,4 @@
-"""Front hero panel — Retail Master Lock v1.0 hierarchy."""
+"""Front hero panel — Retail Master Lock v2.0 hierarchy."""
 
 from reportlab.pdfgen.canvas import Canvas
 
@@ -49,13 +49,13 @@ def render_front_panel(
     )
     y -= typo["tagline"] * 0.4
 
-    # 2. Hero A Symbol — reduced 10%, subordinate to wordmark
-    a_height = 48 * typo.get("a_symbol_scale", 0.90)
+    # 2. Hero A Symbol — reduced 10%, supports wordmark (does not compete)
+    a_height = 26 * typo.get("a_symbol_scale", 0.90)
     y = draw_a_symbol(c, cx, y, a_height, WARM_OFF_WHITE)
     y -= typo.get("brand_name_spacing", 1.5) * 4
 
     # 3. ALTERNATIVE™ — dominant brand asset (+22.5%)
-    brand_size = 18 * typo.get("brand_name_scale", 1.225)
+    brand_size = 20 * typo.get("brand_name_scale", 1.225)
     y = _draw_centered_text(
         c, brand["brand"]["name"], cx, y,
         "Helvetica-Bold", brand_size, accent,
@@ -92,8 +92,9 @@ def render_front_panel(
     )
 
     # 8. Net contents
+    net = brand.get("net_contents", "12 FL OZ (355 mL)")
     _draw_centered_text(
-        c, "12 FL OZ (355 mL)", cx, panel.y + mm_to_pt(8),
+        c, net, cx, panel.y + mm_to_pt(8),
         "Helvetica", typo["net_contents"], WARM_OFF_WHITE,
     )
 

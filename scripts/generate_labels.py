@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate ALTERNATIVE™ 12oz sleek can labels — Retail Master Lock v1.0."""
+"""Generate ALTERNATIVE™ 12oz sleek can labels — Retail Master Lock v2.0."""
 
 import argparse
 import sys
