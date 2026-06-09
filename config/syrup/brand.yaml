@@ -1,0 +1,89 @@
+# ALTERNATIVE™ Syrup Master System v1.0
+# Scalable master — NOT a redesign
+
+version: "1.0"
+product_line: syrup
+
+brand:
+  name: "ALTERNATIVE™"
+  website: "AlternativeBev.com"
+  statement_of_identity: "Hemp-Derived Delta-9 THC Syrup"
+
+canvas:
+  panel_width_mm: 52.0
+  panel_height_mm: 90.0
+  combined_width_mm: 104.0
+  dpi: 300
+  bleed_mm: 3.175
+  safe_zone_mm: 3.0
+  gutter_mm: 0.0
+
+colors:
+  matte_black:
+    cmyk: [0, 0, 0, 100]
+  warm_off_white:
+    cmyk: [0, 3, 8, 4]
+  champagne_gold:
+    cmyk: [0, 15, 35, 15]
+  deep_amber:
+    cmyk: [0, 45, 75, 25]
+  berry_accent:
+    cmyk: [25, 55, 30, 10]
+  citrus_accent:
+    cmyk: [0, 25, 55, 10]
+
+typography:
+  brand_name: 14.0
+  flavor_name: 11.0
+  thc_total: 13.0
+  thc_per_serving: 8.0
+  servings: 7.5
+  net_contents: 7.0
+  panel_heading: 6.5
+  panel_body: 5.5
+  supplement_heading: 6.0
+  supplement_body: 5.0
+
+product:
+  total_thc_mg: 420
+  thc_per_serving_mg: 5
+  serving_size: "5 mL"
+  servings_per_container: 84
+  net_contents: "4 FL OZ (120 mL)"
+
+directions:
+  heading: "DIRECTIONS:"
+  lines:
+    - "Shake well before use."
+    - "Adults 21+: Take 5 mL (1 teaspoon) per serving."
+    - "Wait at least 2 hours before taking an additional serving."
+    - "Do not exceed one serving at onset."
+
+responsible_party:
+  manufactured_by_label: "Manufactured By:"
+  manufactured_by: "Proleve"
+  manufactured_for_label: "Manufactured For:"
+  manufactured_for: "Invictus Wellness LLC"
+  address_lines:
+    - "11624 Red Bridge Rd"
+    - "Locust, NC 28097 USA"
+
+qr_section:
+  heading_lines:
+    - "SCAN FOR"
+    - "LAB RESULTS"
+    - "INGREDIENTS"
+    - "PRODUCT INFO"
+  quiet_zone_ratio: 0.12
+
+warning_panel:
+  heading: "WARNING:"
+  lines:
+    - "For adults 21 years of age or older."
+    - "Keep out of reach of children and pets."
+    - "Do not drive or operate machinery after use."
+    - "Do not use while pregnant or breastfeeding."
+    - "Intoxicating effects may be delayed up to 2 hours."
+    - "Start with a single serving. Do not exceed recommended use."
+    - "May cause a positive drug test result."
+    - "Consume responsibly."

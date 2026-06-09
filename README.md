@@ -1,51 +1,62 @@
 # ALT-Label-System
 
-**ALTERNATIVE™ Final Prepress + Retail Master Lock v2.0**
+Code-driven packaging and label generation for **ALTERNATIVE™** products.
 
-Code-driven label generation for 12oz sleek cans. Refinement and production preparation — **not a redesign**.
+## Product Lines
 
-## Shelf Priority (1-second test)
-
-1. **ALTERNATIVE™** — dominant wordmark
-2. **THC strength** — single-line SKU callout
-3. **Flavor** — LYCHEE SWEET TEA / PASSION FRUIT
-
-## Production Export (8 PDFs)
+| Line | System | Export |
+|------|--------|--------|
+| **12oz Sleek Cans** | `alt_label` v2.0 | `python3 scripts/export_production.py` |
+| **THC Syrup 4oz** | `alt_syrup` v1.0 | `python3 scripts/export_syrup_production.py` |
 
 ```bash
 pip install -r requirements.txt
+```
+
+---
+
+## Can Labels (Retail Master Lock v2.0)
+
+8 PDFs — 4 SKUs × 2 flavors (Lychee Sweet Tea, Passion Fruit)
+
+```bash
 python3 scripts/export_production.py
 python3 scripts/validate_spec.py
 ```
 
-Output: `output/production_v2/` + `MANIFEST.json`
+Output: `output/production_v2/`
 
-### Deliverables
+---
 
-| Flavor | SKUs |
-|--------|------|
-| Lychee Sweet Tea | Session 5mg · Social 10mg · Reserve 50mg · Reserve 100mg |
-| Passion Fruit | Session 5mg · Social 10mg · Reserve 50mg · Reserve 100mg |
+## Syrup Labels (Master Compliance + Production Rebuild)
 
-## Audits (v2.0)
+4 PDFs — Original · Grape · Strawberry · Mango
 
-- **Compliance audit** — nutrition, ingredients, THC, warnings, QR, barcode/lot flags
-- **Prepress audit** — bleed, CMYK, fonts, artboard dimensions
-- **Hierarchy QC** — readability at 100% / 50% / 25% / 10%
+```bash
+python3 scripts/export_syrup_production.py
+python3 scripts/validate_syrup_spec.py
+```
 
-## Manufacturer Data (exact)
+Output: `output/syrup_production/`
 
-| Flavor | Calories | Ingredients |
-|--------|----------|-------------|
-| Passion Fruit | 0 | 3 lines — manufacturer format |
-| Lychee Sweet Tea | 20 | 9 lines — manufacturer format |
+### Syrup Product Facts (locked)
+- 420mg THC · 5mg per 5mL serving · 84 servings · 4 FL OZ (120mL)
 
-## Print Spec
+### Documentation
+- [Compliance Audit Report](docs/syrup/COMPLIANCE_AUDIT_REPORT.md)
+- [Master Label Standard](docs/syrup/MASTER_LABEL_STANDARD.md)
+- [Change Log](docs/syrup/CHANGELOG.md)
+- [Future Expansion Guide](docs/syrup/FUTURE_EXPANSION_GUIDE.md)
 
-- Trim: 182.22mm × 148mm + 3.175mm bleed
-- CMYK · 300 DPI · PDF/X-1a (`--pdfx` or via export script)
-- No decorative elements · No AI artifacts · No 20MG
+### Illustrator Masters
+- `assets/syrup/masters/front_panel_master.svg`
+- `assets/syrup/masters/back_panel_master.svg`
 
-## Pre-Press Warnings (expected)
+---
 
-UPC barcodes, lot/batch/best-by values, and state-specific warnings are flagged but do not block export — zones are preserved for production run assignment.
+## Design Principles (all lines)
+
+- **Not a redesign** — refine, validate, productionize
+- Matte black · warm off-white · gold/amber accents
+- No AI artifacts · no decorative filler · no fruit/cannabis imagery
+- Manufacturer data only — no estimated compliance values
