@@ -1,79 +1,47 @@
 # ALT-Label-System
 
-Code-driven packaging and label generation system for **ALTERNATIVE™** — Production Master v1.
+Code-driven packaging and label generation for **ALTERNATIVE™** — Retail Master Lock v1.0.
 
-Generates retail-ready, compliance-ready 12oz sleek can labels (182.22mm × 148mm, CMYK, 300 DPI) while preserving the existing premium brand aesthetic.
+Refines existing can artwork into a production-ready, nationally scalable 12oz sleek label. **Not a redesign.**
 
-## Specification
+## Shelf Priority (1-second recognition)
 
-This system implements the **ALTERNATIVE™ Master Label Rebuild & Compliance Optimization** spec:
-
-- **Not a redesign** — refinement of existing hierarchy, typography, and color system
-- Locked SKU system: SESSION™ (5mg), SOCIAL™ (10mg), RESERVE™ (50mg / 100mg)
-- Flavors: LYCHEE SWEET TEA, PASSION FRUIT (accent colors only — no fruit graphics)
-- Matte black + warm off-white + flavor-specific gold/amber accents
-- Manufacturing: Proleve Brands / Invictus Wellness LLC
-- QR, warning panel, active ingredient, and protected barcode zones
+1. **ALTERNATIVE™** — dominant wordmark
+2. **THC strength** — single-line callout (`5MG HEMP-DERIVED THC PER CAN`)
+3. **Flavor** — LYCHEE SWEET TEA / PASSION FRUIT
 
 ## Quick Start
 
 ```bash
 pip install -r requirements.txt
-python scripts/generate_labels.py --mode preview
+python3 scripts/generate_labels.py --mode production
+python3 scripts/validate_spec.py
 ```
 
-Output: `output/labels/alternative_{sku}_{flavor}.pdf` (8 variants)
+Generates 8 PDFs (4 SKUs × 2 flavors) at `output/labels/`.
 
-### PDF/X-1a Export
-
-Requires [Ghostscript](https://ghostscript.com/):
+### PDF/X-1a
 
 ```bash
-python scripts/generate_labels.py --mode preview --pdfx
+python3 scripts/generate_labels.py --mode production --pdfx
 ```
 
-### Production Labels
+## Locked Systems
 
-1. Add Proleve-verified compliance JSON per variant in `data/compliance/products/`
-2. Set `"verified": true` in each file
-3. Generate:
+| SKUs | SESSION™ 5mg · SOCIAL™ 10mg · RESERVE™ 50mg · RESERVE™ 100mg |
+| Flavors | LYCHEE SWEET TEA · PASSION FRUIT |
+| No 20MG | Permanently excluded |
 
-```bash
-python scripts/generate_labels.py --mode production --pdfx
-```
+## Manufacturer Data
 
-See [data/compliance/README.md](data/compliance/README.md) for the data schema.
+Nutrition and ingredients use **exact manufacturer-provided values** per flavor. See [data/compliance/README.md](data/compliance/README.md).
 
-## Label Hierarchy
+## Cleanup Pass
 
-| Priority | Element |
-|----------|---------|
-| 1 | A NEW STATE OF MIND |
-| 2 | Hero A Symbol (reduced ~12%) |
-| 3 | ALTERNATIVE™ (increased ~22%) |
-| 4 | HEMP-DERIVED THC BEVERAGE |
-| 5 | SKU (SESSION™ / SOCIAL™ / RESERVE™) |
-| 6 | THC content (largest product element) |
-| 7 | Flavor (increased ~35%) |
-| 8 | 12 FL OZ (355 mL) |
+No decorative diamonds, dots, borders, separators, or filler graphics. Functional elements only.
 
-## Project Structure
+## Spec
 
-```
-config/           Brand, SKU, and flavor definitions
-data/compliance/  Proleve-supplied product data (schema + products/)
-src/alt_label/    Label renderer, panels, PDF/X export
-scripts/          CLI generator
-assets/           Brand assets (A symbol reference)
-output/           Generated PDFs (gitignored)
-```
-
-## Single Variant
-
-```bash
-python scripts/generate_labels.py --sku session_5mg --flavor lychee_sweet_tea
-```
-
-## Compliance Policy
-
-**No placeholder compliance data.** Nutrition facts, ingredients, barcodes, and lot information render only from verified Proleve JSON files. Preview mode shows panel structure without fabricated values.
+- Canvas: 182.22mm × 148mm · CMYK · 300 DPI
+- Matte black · warm off-white · flavor accent (gold/amber reduced to brand + THC + highlights)
+- Manufactured By: Proleve · Manufactured For: Invictus Wellness LLC

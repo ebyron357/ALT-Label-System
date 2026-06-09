@@ -1,10 +1,11 @@
-"""Main label PDF renderer."""
+"""Main label PDF renderer — Retail Master Lock v1.0."""
 
 from pathlib import Path
 
 from reportlab.pdfgen import canvas
 
-from .compliance_loader import load_compliance
+from .colors import MATTE_BLACK
+from .compliance_loader import load_compliance, validate_for_production
 from .config_loader import load_brand, load_flavors, load_skus
 from .layout import build_layout
 from .panels.compliance_panel import render_compliance_panel
@@ -15,15 +16,8 @@ def render_label(
     output_path: Path,
     sku_id: str,
     flavor_id: str,
-    mode: str = "preview",
+    mode: str = "production",
 ) -> Path:
-    """
-    Render a single label PDF.
-
-    mode:
-      - preview: brand layout with compliance placeholders (no fake data)
-      - production: requires verified Proleve compliance JSON
-    """
     brand = load_brand()
     skus = {s["id"]: s for s in load_skus()}
     flavors = {f["id"]: f for f in load_flavors()}
@@ -39,7 +33,6 @@ def render_label(
 
     compliance = load_compliance(sku_id, flavor_id)
     if mode == "production":
-        from .compliance_loader import validate_for_production
         ok, msg = validate_for_production(compliance)
         if not ok:
             raise ValueError(f"Production mode blocked: {msg}")
@@ -50,28 +43,19 @@ def render_label(
     output_path.parent.mkdir(parents=True, exist_ok=True)
     c = canvas.Canvas(str(output_path), pagesize=(layout.width, layout.height))
     c.setTitle(f"ALTERNATIVE {sku['name']} {flavor['name']}")
-    c.setAuthor("ALT-Label-System v1")
+    c.setAuthor("ALT-Label-System v1.0")
 
-    # Full canvas matte black base
-    from .colors import MATTE_BLACK
     c.setFillColor(MATTE_BLACK)
     c.rect(0, 0, layout.width, layout.height, fill=1, stroke=0)
 
     render_front_panel(c, layout, brand, sku, flavor, typo)
     render_compliance_panel(c, layout, brand, sku, compliance, typo)
 
-    # Safe zone guide (non-printing metadata — omitted in production export)
-    if mode == "preview":
-        c.setStrokeColorRGB(0.3, 0.3, 0.3)
-        c.setLineWidth(0.25)
-        c.rect(layout.safe.x, layout.safe.y, layout.safe.width, layout.safe.height, fill=0, stroke=1)
-
     c.save()
     return output_path
 
 
-def render_all(output_dir: Path, mode: str = "preview") -> list[Path]:
-    """Generate all SKU × flavor combinations."""
+def render_all(output_dir: Path, mode: str = "production") -> list[Path]:
     skus = load_skus()
     flavors = load_flavors()
     paths: list[Path] = []

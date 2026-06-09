@@ -1,13 +1,12 @@
-"""Information panel — compliance, QR, barcode, warnings."""
+"""Information panel — compliance only, no decorative elements."""
 
 import io
-from typing import Any
 
 import qrcode
 from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen.canvas import Canvas
 
-from ..colors import CHAMPAGNE_GOLD, MATTE_BLACK, WARM_OFF_WHITE
+from ..colors import MATTE_BLACK, WARM_OFF_WHITE
 from ..layout import LabelLayout
 from .nutrition_facts import render_nutrition_facts
 
@@ -25,20 +24,18 @@ def render_compliance_panel(
     c.rect(panel.x, panel.y, panel.width, panel.height, fill=1, stroke=0)
 
     _render_qr_section(c, layout, brand, compliance, typo)
-    _render_barcode_zone(c, layout, compliance, typo)
+    _render_barcode_zone(c, layout, compliance)
     _render_website(c, layout, brand, typo)
+    _render_active_ingredient(c, layout, brand, sku, typo)
+    _render_manufacturing(c, layout, brand, typo)
+    _render_warning(c, layout, brand, typo)
 
     if compliance and compliance.get("verified"):
         render_nutrition_facts(c, layout.nutrition_zone, compliance["nutrition_facts"], typo)
         _render_ingredients(c, layout, compliance, typo)
-        _render_active_ingredient(c, layout, brand, sku, typo)
-        _render_manufacturing(c, layout, brand, typo)
-        _render_warning(c, layout, brand, typo)
         if compliance.get("state_warnings"):
             _render_state_warnings(c, layout, compliance["state_warnings"], typo)
-        _render_lot_areas(c, layout, compliance, typo)
-    else:
-        _render_compliance_placeholder(c, layout, typo)
+    _render_lot_areas(c, layout, compliance, typo)
 
 
 def _render_qr_section(
@@ -50,7 +47,7 @@ def _render_qr_section(
 ) -> None:
     zone = layout.qr_zone
     qr_size = min(zone.height * 0.65, zone.width * 0.45)
-    quiet = qr_size * 0.12  # preserve quiet zone
+    quiet = qr_size * 0.12
 
     url = (compliance or {}).get("qr_url", f"https://{brand['brand']['website']}")
     qr = qrcode.QRCode(version=1, box_size=10, border=4)
@@ -78,30 +75,18 @@ def _render_barcode_zone(
     c: Canvas,
     layout: LabelLayout,
     compliance: dict | None,
-    typo: dict,
 ) -> None:
+    """Protected barcode zone — render bars only when UPC is assigned."""
     zone = layout.barcode_zone
-    c.setStrokeColor(WARM_OFF_WHITE)
-    c.setLineWidth(0.5)
-
-    if compliance and compliance.get("verified") and compliance.get("barcode"):
+    if compliance and compliance.get("verified") and compliance.get("barcode", {}).get("upc"):
         upc = compliance["barcode"]["upc"]
         _draw_upc_bars(c, zone, upc)
         c.setFillColor(WARM_OFF_WHITE)
         c.setFont("Helvetica", 6)
         c.drawCentredString(zone.center_x, zone.y + 2, upc)
-    else:
-        c.setFillColor(WARM_OFF_WHITE)
-        c.setFont("Helvetica", typo["compliance_body"] - 1)
-        c.drawCentredString(
-            zone.center_x, zone.center_y,
-            "BARCODE ZONE — PROTECTED",
-        )
-        c.rect(zone.x, zone.y, zone.width, zone.height, fill=0, stroke=1)
 
 
 def _draw_upc_bars(c: Canvas, zone, upc: str) -> None:
-    """Render simplified UPC-A barcode representation."""
     digits = upc.zfill(12)
     bar_h = zone.height * 0.7
     bar_y = zone.y + (zone.height - bar_h) / 2
@@ -117,7 +102,6 @@ def _draw_upc_bars(c: Canvas, zone, upc: str) -> None:
 
 
 def _upc_patterns(digits: str) -> str:
-    """Generate UPC-A bar pattern from 12-digit code."""
     left_patterns = {
         "0": "0001101", "1": "0011001", "2": "0010011", "3": "0111101",
         "4": "0100011", "5": "0110001", "6": "0101111", "7": "0111011",
@@ -125,7 +109,6 @@ def _upc_patterns(digits: str) -> str:
     }
     right_patterns = {k: "".join("1" if ch == "0" else "0" for ch in v)
                       for k, v in left_patterns.items()}
-
     pattern = "101"
     for d in digits[:6]:
         pattern += left_patterns.get(d, "0001101")
@@ -138,8 +121,8 @@ def _upc_patterns(digits: str) -> str:
 
 def _render_website(c: Canvas, layout: LabelLayout, brand: dict, typo: dict) -> None:
     zone = layout.qr_zone
-    c.setFillColor(CHAMPAGNE_GOLD)
-    c.setFont("Helvetica-Bold", typo["compliance_body"])
+    c.setFillColor(WARM_OFF_WHITE)
+    c.setFont("Helvetica", typo["compliance_body"])
     c.drawString(zone.x, zone.y + 2, brand["brand"]["website"])
 
 
@@ -155,9 +138,7 @@ def _render_ingredients(
     c.drawString(layout.info_panel.x, y, "Ingredients:")
     y -= typo["compliance_body"] * 1.2
     c.setFont("Helvetica", typo["compliance_body"] - 0.5)
-    ingredients = compliance["ingredients"]
-    lines = _wrap_text(ingredients, 52)
-    for line in lines[:4]:
+    for line in _wrap_text(compliance["ingredients"], 52)[:5]:
         c.drawString(layout.info_panel.x, y, line)
         y -= typo["compliance_body"] * 1.1
 
@@ -170,12 +151,15 @@ def _render_active_ingredient(
     typo: dict,
 ) -> None:
     y = layout.manufacturing_zone.y + layout.manufacturing_zone.height + 4
+    ai = brand["active_ingredient"]
     c.setFillColor(WARM_OFF_WHITE)
     c.setFont("Helvetica-Bold", typo["compliance_body"])
-    c.drawString(layout.info_panel.x, y, brand["active_ingredient"]["label"])
+    c.drawString(layout.info_panel.x, y, ai["label"])
+    y -= typo["compliance_body"] * 1.2
     c.setFont("Helvetica", typo["compliance_body"])
-    text = f"{brand['active_ingredient']['substance']} — {sku['active_ingredient_amount']}"
-    c.drawString(layout.info_panel.x, y - typo["compliance_body"] * 1.2, text)
+    c.drawString(layout.info_panel.x, y, ai["substance"])
+    y -= typo["compliance_body"] * 1.2
+    c.drawString(layout.info_panel.x, y, sku["active_ingredient_amount"])
 
 
 def _render_manufacturing(
@@ -189,13 +173,15 @@ def _render_manufacturing(
     c.setFillColor(WARM_OFF_WHITE)
     c.setFont("Helvetica", typo["compliance_body"] - 0.5)
     lines = [
-        f"Manufactured By: {mfg['manufactured_by']}",
-        f"Manufactured For: {mfg['manufactured_for']}",
-        *mfg["address"],
+        mfg["manufactured_by_label"],
+        mfg["manufactured_by"],
+        mfg["manufactured_for_label"],
+        mfg["manufactured_for"],
+        *mfg["address_lines"],
     ]
     for line in lines:
         c.drawString(layout.info_panel.x, y, line)
-        y -= typo["compliance_body"]
+        y -= typo["compliance_body"] * 0.95
 
 
 def _render_warning(
@@ -224,59 +210,29 @@ def _render_state_warnings(
 ) -> None:
     y = layout.warning_zone.y + 4
     c.setFillColor(WARM_OFF_WHITE)
-    c.setFont("Helvetica-Bold", typo["compliance_body"] - 0.5)
+    c.setFont("Helvetica", typo["compliance_body"] - 0.5)
     for w in warnings[:3]:
-        lines = _wrap_text(w, 48)
-        for line in lines:
+        for line in _wrap_text(w, 48):
             c.drawString(layout.info_panel.x, y, line)
-            y += typo["compliance_body"]
+            y -= typo["compliance_body"]
 
 
 def _render_lot_areas(
     c: Canvas,
     layout: LabelLayout,
-    compliance: dict,
+    compliance: dict | None,
     typo: dict,
 ) -> None:
+    """Preserve lot / batch / best-by areas without decorative separators."""
     y = layout.info_panel.y + 4
     c.setFillColor(WARM_OFF_WHITE)
     c.setFont("Helvetica", typo["compliance_body"] - 1)
-    fields = []
-    if compliance.get("lot_number"):
-        fields.append(f"Lot: {compliance['lot_number']}")
-    if compliance.get("batch_number"):
-        fields.append(f"Batch: {compliance['batch_number']}")
-    if compliance.get("best_by"):
-        fields.append(f"Best By: {compliance['best_by']}")
-    if fields:
-        c.drawString(layout.info_panel.x, y, "  |  ".join(fields))
-
-
-def _render_compliance_placeholder(c: Canvas, layout: LabelLayout, typo: dict) -> None:
-    """Non-production state — compliance data not yet verified."""
-    zone = layout.nutrition_zone
-    c.setFillColor(WARM_OFF_WHITE)
-    c.setFont("Helvetica-Bold", typo["compliance_heading"])
-    c.drawString(zone.x, zone.y + zone.height - 12, "COMPLIANCE DATA REQUIRED")
-    c.setFont("Helvetica", typo["compliance_body"])
-    msg = (
-        "Production labels require verified Proleve-supplied data. "
-        "Add JSON to data/compliance/products/ with verified: true."
-    )
-    for i, line in enumerate(_wrap_text(msg, 42)):
-        c.drawString(zone.x, zone.y + zone.height - 28 - i * 10, line)
-
-    _render_active_ingredient(c, layout, {"active_ingredient": {
-        "label": "Active Ingredient:",
-        "substance": "Hemp-Derived Delta-9 THC",
-    }}, {"active_ingredient_amount": "—"}, typo)
-    _render_manufacturing(c, layout, _load_brand_minimal(), typo)
-    _render_warning(c, layout, _load_brand_minimal(), typo)
-
-
-def _load_brand_minimal() -> dict:
-    from ..config_loader import load_brand
-    return load_brand()
+    lot = (compliance or {}).get("lot_number", "")
+    batch = (compliance or {}).get("batch_number", "")
+    best_by = (compliance or {}).get("best_by", "")
+    c.drawString(layout.info_panel.x, y, f"Lot: {lot}" if lot else "Lot:")
+    c.drawString(layout.info_panel.x + 70, y, f"Batch: {batch}" if batch else "Batch:")
+    c.drawString(layout.info_panel.x + 155, y, f"Best By: {best_by}" if best_by else "Best By:")
 
 
 def _wrap_text(text: str, width: int) -> list[str]:

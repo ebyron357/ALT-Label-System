@@ -1,4 +1,4 @@
-"""Front hero panel — brand hierarchy per Production Master v1."""
+"""Front hero panel — Retail Master Lock v1.0 hierarchy."""
 
 from reportlab.pdfgen.canvas import Canvas
 
@@ -15,12 +15,13 @@ def _draw_centered_text(
     font: str,
     size: float,
     color,
+    line_height: float = 1.35,
 ) -> float:
     c.setFillColor(color)
     c.setFont(font, size)
     tw = c.stringWidth(text, font, size)
     c.drawString(cx - tw / 2, y, text)
-    return y - size * 1.35
+    return y - size * line_height
 
 
 def render_front_panel(
@@ -35,57 +36,56 @@ def render_front_panel(
     accent_key = flavor.get("accent_color", "champagne_gold")
     accent = ACCENT_MAP.get(accent_key, CHAMPAGNE_GOLD)
 
-    # Matte black background for front panel
     c.setFillColor(MATTE_BLACK)
     c.rect(panel.x, panel.y, panel.width, panel.height, fill=1, stroke=0)
 
     cx = panel.center_x
-    y = panel.y + panel.height - mm_to_pt_local(6)
+    y = panel.y + panel.height - mm_to_pt(6)
 
-    # 1. Tagline — TOP
+    # 1. Tagline
     y = _draw_centered_text(
         c, brand["brand"]["tagline"], cx, y,
         "Helvetica", typo["tagline"], WARM_OFF_WHITE,
     )
-    y -= typo["tagline"] * 0.5
+    y -= typo["tagline"] * 0.4
 
-    # 2. Hero A Symbol — reduced ~12.5%
-    a_height = 52 * typo.get("a_symbol_scale", 0.875)
+    # 2. Hero A Symbol — reduced 10%, subordinate to wordmark
+    a_height = 48 * typo.get("a_symbol_scale", 0.90)
     y = draw_a_symbol(c, cx, y, a_height, WARM_OFF_WHITE)
+    y -= typo.get("brand_name_spacing", 1.5) * 4
 
-    # 3. ALTERNATIVE™ — increased ~22.5%, primary recognition
+    # 3. ALTERNATIVE™ — dominant brand asset (+22.5%)
     brand_size = 18 * typo.get("brand_name_scale", 1.225)
     y = _draw_centered_text(
         c, brand["brand"]["name"], cx, y,
         "Helvetica-Bold", brand_size, accent,
+        line_height=typo.get("brand_name_spacing", 1.6),
     )
 
-    # 4. HEMP-DERIVED THC BEVERAGE
+    # 4. Positioning — secondary, off-white
     y = _draw_centered_text(
         c, brand["brand"]["positioning"], cx, y,
         "Helvetica", typo["positioning"], WARM_OFF_WHITE,
     )
-    y -= typo["positioning"] * 0.3
+    y -= typo["positioning"] * 0.25
 
-    # 5. SKU
+    # 5. SKU — secondary, off-white
     y = _draw_centered_text(
         c, sku["name"], cx, y,
-        "Helvetica-Bold", typo["sku"], accent,
+        "Helvetica-Bold", typo["sku"], WARM_OFF_WHITE,
     )
 
-    # 6. THC CONTENT — largest product-specific element
+    # 6. THC strength — single-line callout, accent (shelf priority #2)
+    thc_line = sku.get("thc_line") or f"{sku['thc_mg']}MG HEMP-DERIVED THC PER CAN"
     y = _draw_centered_text(
-        c, sku["thc_display"], cx, y,
-        "Helvetica-Bold", typo["thc_content"], WARM_OFF_WHITE,
+        c, thc_line, cx, y,
+        "Helvetica-Bold", typo["thc_content"], accent,
+        line_height=1.4,
     )
-    y = _draw_centered_text(
-        c, sku["thc_subtext"], cx, y,
-        "Helvetica", typo["thc_subtext"], WARM_OFF_WHITE,
-    )
-    y -= typo["thc_subtext"] * 0.4
+    y -= typo["thc_content"] * 0.2
 
-    # 7. FLAVOR — increased ~35%
-    flavor_size = typo["positioning"] * typo.get("flavor_scale", 1.35)
+    # 7. Flavor — increased 35%, accent (shelf priority #3)
+    flavor_size = typo.get("flavor_base", 8.5) * typo.get("flavor_scale", 1.35)
     y = _draw_centered_text(
         c, flavor["name"], cx, y,
         "Helvetica-Bold", flavor_size, accent,
@@ -93,10 +93,10 @@ def render_front_panel(
 
     # 8. Net contents
     _draw_centered_text(
-        c, "12 FL OZ (355 mL)", cx, panel.y + mm_to_pt_local(8),
+        c, "12 FL OZ (355 mL)", cx, panel.y + mm_to_pt(8),
         "Helvetica", typo["net_contents"], WARM_OFF_WHITE,
     )
 
 
-def mm_to_pt_local(mm: float) -> float:
+def mm_to_pt(mm: float) -> float:
     return mm * 72 / 25.4

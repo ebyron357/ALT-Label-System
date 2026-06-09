@@ -1,30 +1,26 @@
-# Locked SKU system — no additional strengths or naming variants
+# Locked SKU system — no 20MG, no additional strengths
 
 skus:
   - id: session_5mg
     name: "SESSION™"
     thc_mg: 5
-    thc_display: "5MG HEMP-DERIVED THC"
-    thc_subtext: "PER CAN"
+    thc_line: "5MG HEMP-DERIVED THC PER CAN"
     active_ingredient_amount: "5mg"
 
   - id: social_10mg
     name: "SOCIAL™"
     thc_mg: 10
-    thc_display: "10MG HEMP-DERIVED THC"
-    thc_subtext: "PER CAN"
+    thc_line: "10MG HEMP-DERIVED THC PER CAN"
     active_ingredient_amount: "10mg"
 
   - id: reserve_50mg
     name: "RESERVE™"
     thc_mg: 50
-    thc_display: "50MG HEMP-DERIVED THC"
-    thc_subtext: "PER CAN"
+    thc_line: "50MG HEMP-DERIVED THC PER CAN"
     active_ingredient_amount: "50mg"
 
   - id: reserve_100mg
     name: "RESERVE™"
     thc_mg: 100
-    thc_display: "100MG HEMP-DERIVED THC"
-    thc_subtext: "PER CAN"
+    thc_line: "100MG HEMP-DERIVED THC PER CAN"
     active_ingredient_amount: "100mg"
