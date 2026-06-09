@@ -54,6 +54,18 @@ Output: `output/syrup_production/`
 
 ---
 
+## Final Production Lock v3.0
+
+**Launch Readiness Score: 7.4/10** — Design frozen; retail inventory hold until CRITICAL items resolved.
+
+```bash
+python3 scripts/launch_readiness_audit.py
+```
+
+Full gate report: [docs/FINAL_PRODUCTION_LOCK_V3.md](docs/FINAL_PRODUCTION_LOCK_V3.md)
+
+---
+
 ## Design Principles (all lines)
 
 - **Not a redesign** — refine, validate, productionize
