@@ -14,7 +14,7 @@ def render_supplement_facts(
 ) -> None:
     """FDA Supplement Facts format — vector lines and text only."""
     x, y, w, h = zone.x, zone.y, zone.width, zone.height
-    body = typo.get("supplement_body", 5.0)
+    body = max(typo.get("supplement_body", 5.5), 5.5)
     heading = typo.get("supplement_heading", 6.0)
 
     c.setFillColor(WARM_OFF_WHITE)
@@ -56,5 +56,5 @@ def render_supplement_facts(
 
     c.setLineWidth(1)
     c.line(x + 3, y + 10, x + w - 3, y + 10)
-    c.setFont("Helvetica", body - 1.2)
+    c.setFont("Helvetica", max(body - 0.5, 5.0))
     c.drawString(x + 3, y + 2, "† Daily Value not established.")

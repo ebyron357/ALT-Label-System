@@ -7,6 +7,7 @@ product_line: syrup
 brand:
   name: "ALTERNATIVE™"
   website: "AlternativeBev.com"
+  age_gate: "21+"
   statement_of_identity: "Hemp-Derived Delta-9 THC Syrup"
 
 canvas:
@@ -40,9 +41,9 @@ typography:
   servings: 7.5
   net_contents: 7.0
   panel_heading: 6.5
-  panel_body: 5.5
+  panel_body: 6.0
   supplement_heading: 6.0
-  supplement_body: 5.0
+  supplement_body: 5.5
 
 product:
   total_thc_mg: 420

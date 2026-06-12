@@ -42,9 +42,14 @@ def render_front_panel(
     y = _center(c, f"{product['servings_per_container']} SERVINGS", cx, y, "Helvetica", typo["servings"], WARM_OFF_WHITE, 1.3)
     _center(c, product["net_contents"], cx, safe.y + 6, "Helvetica", typo["net_contents"], WARM_OFF_WHITE, 1.2)
 
+    # Age gate — secondary retail cue, text only
+    age_gate = brand["brand"].get("age_gate", "21+")
+    age_size = max(typo["net_contents"] - 1.5, 5.5)
+    _center(c, age_gate, cx, safe.y + 15, "Helvetica", age_size, WARM_OFF_WHITE, 1.1)
+
     # Statement of identity — secondary, bottom area
     c.setFillColor(WARM_OFF_WHITE)
     c.setFont("Helvetica", typo["net_contents"] - 1.5)
     stmt = brand["brand"]["statement_of_identity"]
     tw = c.stringWidth(stmt, "Helvetica", typo["net_contents"] - 1.5)
-    c.drawString(cx - tw / 2, safe.y + 18, stmt)
+    c.drawString(cx - tw / 2, safe.y + 22, stmt)
