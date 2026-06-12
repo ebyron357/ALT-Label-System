@@ -1,8 +1,8 @@
-"""Front panel — LOCKED hierarchy, improved spacing."""
+"""Front panel — LOCKED hierarchy, master footer alignment."""
 
 from reportlab.pdfgen.canvas import Canvas
 
-from ..colors import ACCENT_MAP, CHAMPAGNE_GOLD, MATTE_BLACK, WARM_OFF_WHITE
+from ..colors import ACCENT_MAP, CHAMPAGNE_GOLD, DIVIDER, MATTE_BLACK, WARM_OFF_WHITE
 from ..layout import SyrupLayout
 
 
@@ -12,6 +12,39 @@ def _center(c: Canvas, text: str, cx: float, y: float, font: str, size: float, c
     tw = c.stringWidth(text, font, size)
     c.drawString(cx - tw / 2, y, text)
     return y - size * lh
+
+
+def _render_master_footer(
+    c: Canvas,
+    safe,
+    cx: float,
+    brand: dict,
+    product: dict,
+    typo: dict,
+) -> None:
+    """Shared footer structure — ALT ORIGINAL master alignment for all SKUs."""
+    net_y = safe.y + 6
+    age_y = safe.y + 14
+    stmt_y = safe.y + 22
+    divider_y = safe.y + 28
+
+    c.setStrokeColor(DIVIDER)
+    c.setLineWidth(0.4)
+    inset = 10
+    c.line(safe.x + inset, divider_y, safe.x + safe.width - inset, divider_y)
+
+    _center(c, product["net_contents"], cx, net_y, "Helvetica", typo["net_contents"], WARM_OFF_WHITE, 1.2)
+
+    age_gate = brand["brand"].get("age_gate", "21+")
+    age_size = typo.get("age_gate", 5.0)
+    _center(c, age_gate, cx, age_y, "Helvetica", age_size, WARM_OFF_WHITE, 1.0)
+
+    stmt = brand["brand"]["statement_of_identity"]
+    stmt_size = typo.get("statement_of_identity", 6.6)
+    c.setFillColor(WARM_OFF_WHITE)
+    c.setFont("Helvetica", stmt_size)
+    tw = c.stringWidth(stmt, "Helvetica", stmt_size)
+    c.drawString(cx - tw / 2, stmt_y, stmt)
 
 
 def render_front_panel(
@@ -40,11 +73,5 @@ def render_front_panel(
     y = _center(c, f"{product['total_thc_mg']} MG THC", cx, y, "Helvetica-Bold", typo["thc_total"], WARM_OFF_WHITE, 1.35)
     y = _center(c, f"{product['thc_per_serving_mg']} MG THC PER SERVING", cx, y, "Helvetica-Bold", typo["thc_per_serving"], accent, 1.3)
     y = _center(c, f"{product['servings_per_container']} SERVINGS", cx, y, "Helvetica", typo["servings"], WARM_OFF_WHITE, 1.3)
-    _center(c, product["net_contents"], cx, safe.y + 6, "Helvetica", typo["net_contents"], WARM_OFF_WHITE, 1.2)
 
-    # Statement of identity — secondary, bottom area
-    c.setFillColor(WARM_OFF_WHITE)
-    c.setFont("Helvetica", typo["net_contents"] - 1.5)
-    stmt = brand["brand"]["statement_of_identity"]
-    tw = c.stringWidth(stmt, "Helvetica", typo["net_contents"] - 1.5)
-    c.drawString(cx - tw / 2, safe.y + 18, stmt)
+    _render_master_footer(c, safe, cx, brand, product, typo)

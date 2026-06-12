@@ -6,17 +6,17 @@ flavors:
     display_name: "Original"
     accent_color: champagne_gold
 
-  - id: grape
-    name: "GRAPE"
-    display_name: "Grape"
-    accent_color: berry_accent
+  - id: mango
+    name: "MANGO"
+    display_name: "Mango"
+    accent_color: deep_amber
 
   - id: strawberry
     name: "STRAWBERRY"
     display_name: "Strawberry"
-    accent_color: berry_accent
+    accent_color: strawberry_accent
 
-  - id: mango
-    name: "MANGO"
-    display_name: "Mango"
-    accent_color: citrus_accent
+  - id: grape
+    name: "GRAPE"
+    display_name: "Grape"
+    accent_color: berry_accent

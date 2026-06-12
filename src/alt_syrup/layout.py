@@ -58,38 +58,19 @@ def build_layout() -> SyrupLayout:
         back.width - 2 * safe_inset, back.height - 2 * safe_inset,
     )
 
-    supplement_zone = Rect(
-        safe_back.x, safe_back.y + safe_back.height * 0.42,
-        safe_back.width * 0.48, safe_back.height * 0.38,
-    )
-    directions_zone = Rect(
-        safe_back.x, safe_back.y + safe_back.height * 0.72,
-        safe_back.width, safe_back.height * 0.26,
-    )
-    ingredients_zone = Rect(
-        safe_back.x + safe_back.width * 0.50, safe_back.y + safe_back.height * 0.42,
-        safe_back.width * 0.50, safe_back.height * 0.28,
-    )
-    warning_zone = Rect(
-        safe_back.x, safe_back.y + safe_back.height * 0.08,
-        safe_back.width, safe_back.height * 0.32,
-    )
-    responsible_zone = Rect(
-        safe_back.x, safe_back.y + safe_back.height * 0.80,
-        safe_back.width * 0.55, safe_back.height * 0.18,
-    )
-    qr_zone = Rect(
-        safe_back.x, safe_back.y,
-        safe_back.width * 0.42, safe_back.height * 0.10,
-    )
-    barcode_zone = Rect(
-        safe_back.x + safe_back.width * 0.55, safe_back.y,
-        safe_back.width * 0.45, safe_back.height * 0.10,
-    )
-    lot_zone = Rect(
-        safe_back.x, safe_back.y + safe_back.height * 0.94,
-        safe_back.width, safe_back.height * 0.06,
-    )
+    # Non-overlapping vertical bands (percentages of safe_back.height)
+    h = safe_back.height
+    x0 = safe_back.x
+    w = safe_back.width
+
+    qr_zone = Rect(x0, safe_back.y, w * 0.62, h * 0.18)
+    barcode_zone = Rect(x0 + w * 0.62, safe_back.y, w * 0.38, h * 0.18)
+    warning_zone = Rect(x0, safe_back.y + h * 0.18, w, h * 0.22)
+    supplement_zone = Rect(x0, safe_back.y + h * 0.40, w * 0.48, h * 0.23)
+    ingredients_zone = Rect(x0 + w * 0.50, safe_back.y + h * 0.40, w * 0.50, h * 0.23)
+    directions_zone = Rect(x0, safe_back.y + h * 0.63, w, h * 0.14)
+    responsible_zone = Rect(x0, safe_back.y + h * 0.77, w, h * 0.14)
+    lot_zone = Rect(x0, safe_back.y + h * 0.91, w, h * 0.09)
 
     return SyrupLayout(
         width=full_w,
