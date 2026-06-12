@@ -30,7 +30,7 @@ Output: `output/production_v2/`
 
 ## Syrup Labels (Master Compliance + Production Rebuild)
 
-4 PDFs — Original · Grape · Strawberry · Mango
+4 PDFs — Original · Mango · Strawberry · Grape
 
 ```bash
 python3 scripts/export_syrup_production.py
