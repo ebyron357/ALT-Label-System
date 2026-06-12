@@ -27,9 +27,11 @@ colors:
   champagne_gold:
     cmyk: [0, 15, 35, 15]
   deep_amber:
-    cmyk: [0, 45, 75, 25]
+    cmyk: [0, 38, 62, 28]
   berry_accent:
     cmyk: [25, 55, 30, 10]
+  strawberry_accent:
+    cmyk: [18, 72, 48, 22]
   citrus_accent:
     cmyk: [0, 25, 55, 10]
 
@@ -40,6 +42,8 @@ typography:
   thc_per_serving: 8.0
   servings: 7.5
   net_contents: 7.0
+  statement_of_identity: 6.6
+  age_gate: 5.0
   panel_heading: 6.5
   panel_body: 6.0
   supplement_heading: 6.0
@@ -75,7 +79,7 @@ qr_section:
     - "LAB RESULTS"
     - "INGREDIENTS"
     - "PRODUCT INFO"
-  quiet_zone_ratio: 0.12
+  quiet_zone_ratio: 0.14
 
 warning_panel:
   heading: "WARNING:"

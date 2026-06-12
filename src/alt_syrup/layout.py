@@ -63,12 +63,12 @@ def build_layout() -> SyrupLayout:
     x0 = safe_back.x
     w = safe_back.width
 
-    qr_zone = Rect(x0, safe_back.y, w * 0.58, h * 0.15)
-    barcode_zone = Rect(x0 + w * 0.58, safe_back.y, w * 0.42, h * 0.15)
-    warning_zone = Rect(x0, safe_back.y + h * 0.15, w, h * 0.23)
-    supplement_zone = Rect(x0, safe_back.y + h * 0.38, w * 0.48, h * 0.24)
-    ingredients_zone = Rect(x0 + w * 0.50, safe_back.y + h * 0.38, w * 0.50, h * 0.24)
-    directions_zone = Rect(x0, safe_back.y + h * 0.62, w, h * 0.15)
+    qr_zone = Rect(x0, safe_back.y, w * 0.62, h * 0.18)
+    barcode_zone = Rect(x0 + w * 0.62, safe_back.y, w * 0.38, h * 0.18)
+    warning_zone = Rect(x0, safe_back.y + h * 0.18, w, h * 0.22)
+    supplement_zone = Rect(x0, safe_back.y + h * 0.40, w * 0.48, h * 0.23)
+    ingredients_zone = Rect(x0 + w * 0.50, safe_back.y + h * 0.40, w * 0.50, h * 0.23)
+    directions_zone = Rect(x0, safe_back.y + h * 0.63, w, h * 0.14)
     responsible_zone = Rect(x0, safe_back.y + h * 0.77, w, h * 0.14)
     lot_zone = Rect(x0, safe_back.y + h * 0.91, w, h * 0.09)
 

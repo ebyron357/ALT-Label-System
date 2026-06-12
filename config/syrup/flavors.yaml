@@ -9,12 +9,12 @@ flavors:
   - id: mango
     name: "MANGO"
     display_name: "Mango"
-    accent_color: citrus_accent
+    accent_color: deep_amber
 
   - id: strawberry
     name: "STRAWBERRY"
     display_name: "Strawberry"
-    accent_color: berry_accent
+    accent_color: strawberry_accent
 
   - id: grape
     name: "GRAPE"
