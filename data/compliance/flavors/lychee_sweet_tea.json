@@ -1,0 +1,22 @@
+{
+  "verified": true,
+  "source": "manufacturer_provided",
+  "nutrition_facts": {
+    "serving_size": "1 can (355 mL)",
+    "servings_per_container": "1",
+    "calories": "20",
+    "nutrients": []
+  },
+  "ingredients": "Water, Organic Cane Sugar, Natural Lychee Flavoring, Citric Acid, Malic Acid, Tartaric Acid, Tea Flavoring, Potassium Sorbate, Hemp-Derived Delta-9 THC",
+  "ingredients_lines": [
+    "Water",
+    "Organic Cane Sugar",
+    "Natural Lychee Flavoring",
+    "Citric Acid",
+    "Malic Acid",
+    "Tartaric Acid",
+    "Tea Flavoring",
+    "Potassium Sorbate",
+    "Hemp-Derived Delta-9 THC"
+  ]
+}

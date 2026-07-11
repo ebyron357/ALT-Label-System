@@ -1,0 +1,16 @@
+{
+  "verified": true,
+  "source": "manufacturer_provided",
+  "nutrition_facts": {
+    "serving_size": "1 can (355 mL)",
+    "servings_per_container": "1",
+    "calories": "0",
+    "nutrients": []
+  },
+  "ingredients": "Carbonated Water, Natural Passion Fruit Flavor, Hemp-Derived THC",
+  "ingredients_lines": [
+    "Carbonated Water",
+    "Natural Passion Fruit Flavor",
+    "Hemp-Derived THC"
+  ]
+}
