@@ -1,0 +1,20 @@
+{
+  "verified": true,
+  "source": "manufacturer_provided",
+  "supplement_facts": {
+    "serving_size": "5 mL",
+    "servings_per_container": 84,
+    "active_ingredient": "Hemp-Derived Delta-9 THC",
+    "amount_per_serving": "5 mg",
+    "other_ingredients": []
+  },
+  "ingredients": "Water, Cane Sugar, Natural Flavor, Hemp-Derived Delta-9 THC, Citric Acid, Sodium Benzoate (Preservative)",
+  "ingredients_lines": [
+    "Water",
+    "Cane Sugar",
+    "Natural Flavor",
+    "Hemp-Derived Delta-9 THC",
+    "Citric Acid",
+    "Sodium Benzoate (Preservative)"
+  ]
+}

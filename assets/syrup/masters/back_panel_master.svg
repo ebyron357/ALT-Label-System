@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 147.4 255.1" width="52mm" height="90mm">
+  <!-- ALTERNATIVE" Syrup Back Panel Master  Illustrator editable -->
+  <rect width="100%" height="100%" fill="#1A1A1A"/>
+  <rect x="8" y="8" width="40" height="40" fill="#FFFFFF" stroke="none"/>
+  <text x="55" y="18" fill="#F5F0E8" font-family="Helvetica, Arial, sans-serif" font-weight="bold" font-size="6">SCAN FOR</text>
+  <text x="55" y="26" fill="#F5F0E8" font-family="Helvetica, Arial, sans-serif" font-weight="bold" font-size="6">LAB RESULTS</text>
+  <text x="55" y="34" fill="#F5F0E8" font-family="Helvetica, Arial, sans-serif" font-weight="bold" font-size="6">INGREDIENTS</text>
+  <text x="55" y="42" fill="#F5F0E8" font-family="Helvetica, Arial, sans-serif" font-weight="bold" font-size="6">PRODUCT INFO</text>
+  <text x="8" y="58" fill="#F5F0E8" font-family="Helvetica, Arial, sans-serif" font-size="5.5">AlternativeBev.com</text>
+  <text x="8" y="78" fill="#F5F0E8" font-family="Helvetica, Arial, sans-serif" font-weight="bold" font-size="6.5">WARNING:</text>
+  <rect x="8" y="130" width="65" height="95" fill="#F5F0E8"/>
+  <text x="12" y="145" fill="#1A1A1A" font-family="Helvetica, Arial, sans-serif" font-weight="bold" font-size="6">Supplement Facts</text>
+  <text x="80" y="145" fill="#F5F0E8" font-family="Helvetica, Arial, sans-serif" font-weight="bold" font-size="6.5">INGREDIENTS:</text>
+  <text x="8" y="235" fill="#F5F0E8" font-family="Helvetica, Arial, sans-serif" font-weight="bold" font-size="6.5">DIRECTIONS:</text>
+  <text x="8" y="248" fill="#F5F0E8" font-family="Helvetica, Arial, sans-serif" font-size="5">Lot:    Best By:</text>
+</svg>
