@@ -1,0 +1,22 @@
+# Locked syrup flavors — scalable via this file only
+
+flavors:
+  - id: original
+    name: "ORIGINAL"
+    display_name: "Original"
+    accent_color: champagne_gold
+
+  - id: grape
+    name: "GRAPE"
+    display_name: "Grape"
+    accent_color: berry_accent
+
+  - id: strawberry
+    name: "STRAWBERRY"
+    display_name: "Strawberry"
+    accent_color: berry_accent
+
+  - id: mango
+    name: "MANGO"
+    display_name: "Mango"
+    accent_color: citrus_accent

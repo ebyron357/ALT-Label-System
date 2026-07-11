@@ -1,0 +1,89 @@
+checklist,id,item,classification,owner,dependency,estimated_cost,estimated_timeline,risk_level,status,blocks
+MANUFACTURING,M01,Proleve signed label approval (8 beverage SKUs),CRITICAL,Proleve QA,Final label PDFs + legal review,$0 internal,3-7 days,HIGH,OPEN,PRODUCTION_ORDER
+MANUFACTURING,M02,Master formula lock per SKU (5/10/50/100 mg),CRITICAL,Proleve R&D,THC extract spec + dosing validation,$2K-5K validation,7-14 days,HIGH,OPEN,PRODUCTION_ORDER
+MANUFACTURING,M03,FDA Food Facility Registration (FEI) active for Proleve,CRITICAL,Proleve,None,$0 verify,1-3 days,HIGH,ASSUMED_OPEN,PRODUCTION_ORDER
+MANUFACTURING,M04,cGMP / HACCP plan documented for THC beverages,CRITICAL,Proleve QA,Formula lock,$5K-15K if new,14-30 days,HIGH,OPEN,PRODUCTION_ORDER
+MANUFACTURING,M05,ISO 17025 lab contracted for batch release testing,CRITICAL,Proleve QA,Potency targets per SKU,$500-2K setup + $150-400/batch,7-14 days,HIGH,OPEN,PRODUCTION_ORDER
+MANUFACTURING,M06,Batch record SOP (lot/batch/best-by encoding),CRITICAL,Proleve Production,QA sign-off,$0 internal,3-5 days,HIGH,OPEN,PRODUCTION_ORDER
+MANUFACTURING,M07,Shelf-life / stability study (real-time or accelerated),CRITICAL,Proleve QA,Formula + packaging,$3K-10K,30-90 days,HIGH,OPEN,PRODUCTION_ORDER
+MANUFACTURING,M08,THC homogeneity validation per fill line,CRITICAL,Proleve QA,Formula lock + line qualification,$2K-8K,7-14 days,HIGH,OPEN,PRODUCTION_ORDER
+MANUFACTURING,M09,Raw material specs: hemp extract COA + potency,CRITICAL,Proleve Procurement,Supplier qualification,$0-5K incoming,$3-7 days,HIGH,OPEN,PRODUCTION_ORDER
+MANUFACTURING,M10,Allergen assessment signed (tea/sugar/flavor),IMPORTANT,Proleve QA,Ingredient statements verified,$0 internal,3 days,MEDIUM,OPEN,PRODUCTION_ORDER
+MANUFACTURING,M11,Fill line qualification for carbonated THC beverage,IMPORTANT,Proleve Production,Formula lock,$1K-5K line time,5-10 days,MEDIUM,OPEN,PRODUCTION_ORDER
+MANUFACTURING,M12,Carbonation parameters locked per flavor,IMPORTANT,Proleve R&D,Sensory + stability,$0-2K,5-7 days,MEDIUM,OPEN,PRODUCTION_ORDER
+MANUFACTURING,M13,Alcohol content verification (0.0% ABV),IMPORTANT,Proleve QA,Formula,$200-500/test,3 days,MEDIUM,OPEN,PRODUCTION_ORDER
+MANUFACTURING,M14,Heavy metals / pesticides panel on extract,IMPORTANT,Proleve QA,Extract lot,$300-800/lot,5 days,MEDIUM,OPEN,PRODUCTION_ORDER
+MANUFACTURING,M15,Residual solvent testing on extract,IMPORTANT,Proleve QA,Extract lot,$200-500/lot,5 days,MEDIUM,OPEN,PRODUCTION_ORDER
+MANUFACTURING,M16,Microbial limits testing protocol,IMPORTANT,Proleve QA,Lab contract,$150-300/batch,3 days,MEDIUM,OPEN,PRODUCTION_ORDER
+MANUFACTURING,M17,Invictus-Proleve co-manufacturing agreement executed,IMPORTANT,Invictus Legal,Label + formula approval,$2K-5K legal,7-14 days,MEDIUM,OPEN,PRODUCTION_ORDER
+MANUFACTURING,M18,Product liability insurance bound before first run,IMPORTANT,Invictus,$2M/$2M minimum,$3K-8K/yr,7 days,MEDIUM,OPEN,INVENTORY
+MANUFACTURING,M19,NC hemp processor status confirmed (SB 535 monitor),IMPORTANT,Invictus Legal,NC counsel,$5K-10K counsel,ongoing,MEDIUM,OPEN,PRODUCTION_ORDER
+MANUFACTURING,M20,Best-by date methodology defined (12-18 mo typical),IMPORTANT,Proleve QA,Stability study,$0 internal,7 days post-stability,MEDIUM,OPEN,PRODUCTION_ORDER
+PRODUCTION,P01,GS1 UPC assigned all 8 beverage SKUs,CRITICAL,Invictus,GS1 prefix purchase,$750,5 days,HIGH,OPEN,PRODUCTION_ORDER
+PRODUCTION,P02,Print-ready PDF/X-1a approved by label converter,CRITICAL,Proleve Prepress,QR CMYK fix + converter preflight,$500-2K preflight,5-10 days,HIGH,OPEN,PRODUCTION_ORDER
+PRODUCTION,P03,QR codes CMYK-safe (no RGB raster),CRITICAL,Proleve Prepress,Converter spec,$0-500,2-3 days,HIGH,OPEN,PRODUCTION_ORDER
+PRODUCTION,P04,Physical press proof approved (can substrate),CRITICAL,Proleve + Converter,P02 complete,$800-2K,7-14 days,HIGH,OPEN,PRODUCTION_ORDER
+PRODUCTION,P05,12oz sleek can supply confirmed (MOQ + lead time),CRITICAL,Proleve Procurement,Supplier PO,$15K-40K deposit,14-28 days,HIGH,OPEN,PRODUCTION_ORDER
+PRODUCTION,P06,Can ends compatible with Proleve fill line,CRITICAL,Proleve Procurement,P05,$2K-8K,14-21 days,HIGH,OPEN,PRODUCTION_ORDER
+PRODUCTION,P07,BPA-NI liner specification confirmed,IMPORTANT,Proleve Procurement,Can supplier,$0,3 days,MEDIUM,OPEN,PRODUCTION_ORDER
+PRODUCTION,P08,Label converter PO issued with approved art,CRITICAL,Proleve Procurement,P01+P02+P04,$8K-25K per 8-SKU run,14-21 days,HIGH,OPEN,PRODUCTION_ORDER
+PRODUCTION,P09,Lot/batch/best-by values populated per run in label files,CRITICAL,Proleve Production,M06 batch SOP,$0 internal,1 day pre-run,HIGH,OPEN,PRODUCTION_ORDER
+PRODUCTION,P10,First-run SKU selection locked (recommend 5+10 mg only),IMPORTANT,Invictus Product,War room tier analysis,$0,1 day,MEDIUM,OPEN,PRODUCTION_ORDER
+PRODUCTION,P11,Minimum run quantity defined per SKU,IMPORTANT,Proleve Production,Converter + fill MOQ,$0 internal,3 days,MEDIUM,OPEN,PRODUCTION_ORDER
+PRODUCTION,P12,Case pack spec: 12-pack beverage shipper,IMPORTANT,Invictus Ops,UPC case codes,$2K-5K dieline,$10-14 days,MEDIUM,OPEN,INVENTORY
+PRODUCTION,P13,Case UPC (ITF-14) assigned per SKU,IMPORTANT,Invictus,P01 GS1 prefix,$0,1 day,MEDIUM,OPEN,WHOLESALE
+PRODUCTION,P14,Pallet configuration: 2,400 cans / 200 cases standard,IMPORTANT,Invictus Ops,P12 case spec,$0 internal,3 days,LOW,OPEN,INVENTORY
+PRODUCTION,P15,Shrink wrap / case tape spec locked,OPTIONAL,Proleve Ops,Case pack,$500-1K,5 days,LOW,OPEN,INVENTORY
+PRODUCTION,P16,Ink rub / adhesion test on matte black substrate,IMPORTANT,Converter,P04 press proof,$200-500,3 days,MEDIUM,OPEN,PRODUCTION_ORDER
+PRODUCTION,P17,Barcode scan verification on press proof,CRITICAL,Proleve QA,P01 UPC assigned,$0,1 day,HIGH,OPEN,PRODUCTION_ORDER
+PRODUCTION,P18,Production schedule slot reserved on fill line,IMPORTANT,Proleve Production,P05+P06+P08,Line time internal,7-14 days,MEDIUM,OPEN,PRODUCTION_ORDER
+PRODUCTION,P19,Quarantine / hold-release procedure for failed COA,CRITICAL,Proleve QA,M05 lab contract,$0 internal,3 days,HIGH,OPEN,INVENTORY
+PRODUCTION,P20,Destruction protocol for out-of-spec batches,IMPORTANT,Proleve QA,QA SOP,$0 internal,2 days,MEDIUM,OPEN,INVENTORY
+LAUNCH,L01,Batch-specific COA published at QR URL,CRITICAL,Proleve QA + Invictus Web,M05 lab results per batch,$2K-5K web,$14 days,HIGH,OPEN,DTC
+LAUNCH,L02,DTC geo-block ship matrix live (Tier 3 blocked),CRITICAL,Invictus Compliance,state_matrix.csv,$0-2K dev,3 days,HIGH,OPEN,DTC
+LAUNCH,L03,High-risk hemp payment processor active,CRITICAL,Invictus,Merchant application,4-6% txn + reserve,14 days,HIGH,OPEN,DTC
+LAUNCH,L04,Product liability COI issued ($2M/$2M),CRITICAL,Invictus,M18 insurance,See M18,7 days,HIGH,OPEN,ALL_CHANNELS
+LAUNCH,L05,Age verification on DTC checkout (21+),CRITICAL,Invictus Web,Website complete,assumed done,1 day verify,MEDIUM,ASSUMED_COMPLETE,DTC
+LAUNCH,L06,AlternativeBev.com COA landing page live,IMPORTANT,Invictus Web,L01 batch COA,$1K-3K,7 days,MEDIUM,OPEN,DTC
+LAUNCH,L07,Federal cliff inventory cap policy (sell-through Oct 2026),CRITICAL,Invictus CFO,Executive decision,$0,1 day,HIGH,OPEN,INVENTORY
+LAUNCH,L08,Wholesale SKU policy: 5/10 mg only (delist 50/100),CRITICAL,Invictus Product,War room decision,$0,1 day,HIGH,OPEN,WHOLESALE
+LAUNCH,L09,Hemp beverage counsel ship-matrix sign-off,IMPORTANT,Invictus Legal,state_matrix.csv,$15K-25K,14 days,MEDIUM,OPEN,ALL_CHANNELS
+LAUNCH,L10,Vendor spec sheet packet (8 SKUs),IMPORTANT,Proleve QA,Formula + COA template,$0-2K,7 days,MEDIUM,OPEN,WHOLESALE
+LAUNCH,L11,MSDS / SDS for hemp extract on file,IMPORTANT,Proleve QA,Extract supplier,assumed,$3 days,LOW,ASSUMED_OPEN,WHOLESALE
+LAUNCH,L12,Cold storage / warehouse capacity for finished goods,IMPORTANT,Proleve / 3PL,Production volume,$2K-8K/mo,7-14 days,MEDIUM,OPEN,INVENTORY
+LAUNCH,L13,Recall procedure documented,IMPORTANT,Proleve QA + Invictus,cGMP,$0-3K,7 days,MEDIUM,OPEN,ALL_CHANNELS
+LAUNCH,L14,TN TABC supplier license (if TN in wave 1),IMPORTANT,Proleve/Invictus,TN counsel,$2K-5K,30-60 days,MEDIUM,OPEN,WHOLESALE
+WHOLESALE,W01,GS1 company prefix + product data in GDSN,CRITICAL,Invictus,P01,$750+$150/yr,5 days,HIGH,OPEN,WHOLESALE
+WHOLESALE,W02,UNFI or KeHE vendor application submitted,IMPORTANT,Invictus,W01+W04+W06,See broker,60-90 days,MEDIUM,OPEN,WHOLESALE
+WHOLESALE,W03,EDI capability (850/856/810),IMPORTANT,Invictus Ops,Broker requirement,$5K-15K,60-90 days,MEDIUM,OPEN,WHOLESALE
+WHOLESALE,W04,Product liability COI naming distributor additional insured,CRITICAL,Invictus,L04,$0 endorsement,7 days,HIGH,OPEN,WHOLESALE
+WHOLESALE,W05,Proleve FDA FEI number on vendor forms,CRITICAL,Proleve,M03,$0,1 day,HIGH,ASSUMED_OPEN,WHOLESALE
+WHOLESALE,W06,Uniform 12-pack case with scannable case UPC,CRITICAL,Invictus Ops,P12+P13,$2K-5K,14 days,HIGH,OPEN,WHOLESALE
+WHOLESALE,W07,Wholesale price list + MAP policy,IMPORTANT,Invictus Sales,Cost model,$0 internal,5 days,MEDIUM,OPEN,WHOLESALE
+WHOLESALE,W08,State-specific label warnings for target wholesale states,IMPORTANT,Invictus Compliance,Counsel per state,$5K,14-30 days,MEDIUM,OPEN,WHOLESALE
+WHOLESALE,W09,Broker chargeback / deduction SOP,OPTIONAL,Invictus Finance,W02,$0 internal,7 days,LOW,OPEN,WHOLESALE
+WHOLESALE,W10,Minimum advertised price for indie accounts,IMPORTANT,Invictus Sales,W07,$0,3 days,MEDIUM,OPEN,WHOLESALE
+WHOLESALE,W11,Sample program budget + ship compliance,IMPORTANT,Invictus Sales,L02 geo-block,$2K-5K,7 days,MEDIUM,OPEN,WHOLESALE
+WHOLESALE,W12,Slotting fee reserve (if broker requires),OPTIONAL,Invictus CFO,W02,$5K-25K,90 days,LOW,OPEN,WHOLESALE
+RETAIL,R01,Unit UPC scannable at POS,CRITICAL,Invictus,P01,$750,5 days,HIGH,OPEN,RETAIL
+RETAIL,R02,Velocity data from 90-day pilot (NC/TN/PA),IMPORTANT,Invictus Sales,DTC + indie retail,$5K marketing,90 days,MEDIUM,OPEN,RETAIL
+RETAIL,R03,21+ shelf talker + cashier training script,IMPORTANT,Invictus Sales,Legal review,$500-1K print,5 days,MEDIUM,OPEN,RETAIL
+RETAIL,R04,Planogram dimensions for 12oz sleek can,IMPORTANT,Invictus Sales,Physical can,$0,3 days,LOW,OPEN,RETAIL
+RETAIL,R05,Retailer COI naming store chain additional insured,IMPORTANT,Invictus,L04,$0 endorsement,7 days,MEDIUM,OPEN,RETAIL
+RETAIL,R06,State legality one-sheet per target retailer,IMPORTANT,Invictus Compliance,state_matrix.csv,$0-1K,3 days,MEDIUM,OPEN,RETAIL
+RETAIL,R07,Free-fill / intro promo terms sheet,OPTIONAL,Invictus Sales,W07,$2K-10K,14 days,LOW,OPEN,RETAIL
+RETAIL,R08,Child-resistant not required (beverage can) — document,OPTIONAL,Invictus Compliance,Counsel,$0,3 days,LOW,OPEN,RETAIL
+RETAIL,R09,Independent beverage buyer sell sheet,IMPORTANT,Invictus Sales,L10 vendor packet,$500 design excluded,5 days,MEDIUM,OPEN,RETAIL
+RETAIL,R10,Scan test at retailer POS system,IMPORTANT,Invictus Ops,R01+P17,$0,1 day,MEDIUM,OPEN,RETAIL
+DTC,D01,High-risk merchant account approved,CRITICAL,Invictus,L03,4-6% + reserve,14 days,HIGH,OPEN,DTC
+DTC,D02,Checkout geo-fence (block Tier 3 + capped states),CRITICAL,Invictus Dev,L02 matrix,$0-2K,3 days,HIGH,OPEN,DTC
+DTC,D03,Age gate 21+ at checkout,CRITICAL,Invictus Dev,Website,$0,1 day verify,HIGH,ASSUMED_COMPLETE,DTC
+DTC,D04,Shipping carrier contract (no USPS for THC),CRITICAL,Invictus Ops,Carrier policy review,$0-500,7 days,HIGH,OPEN,DTC
+DTC,D05,Batch COA page live per QR code,CRITICAL,Proleve QA + Invictus,L01,$2K-5K,14 days,HIGH,OPEN,DTC
+DTC,D06,Order fulfillment SOP (pick/pack/ship),IMPORTANT,Proleve / 3PL,L12 warehouse,$0-3K,7 days,MEDIUM,OPEN,DTC
+DTC,D07,Plain-box shipping (no external THC branding),IMPORTANT,Invictus Ops,Carrier compliance,$0,2 days,MEDIUM,OPEN,DTC
+DTC,D08,Return / refund policy (no open product),IMPORTANT,Invictus Legal,State law,$0 legal,3 days,MEDIUM,OPEN,DTC
+DTC,D09,Abandoned cart + email compliance (CAN-SPAM),OPTIONAL,Invictus Marketing,Website,assumed,$0,LOW,ASSUMED_COMPLETE,DTC
+DTC,D10,Excise tax calculation per destination state,IMPORTANT,Invictus Finance,state_matrix.csv,$1K-3K,14 days,MEDIUM,OPEN,DTC
+DTC,D11,Inventory sync (shop ↔ warehouse),IMPORTANT,Invictus Ops,Production complete,$0-2K,7 days,MEDIUM,OPEN,DTC
+DTC,D12,Customer service script for intoxication complaints,IMPORTANT,Invictus Ops,Legal,$0,2 days,MEDIUM,OPEN,DTC

@@ -1,0 +1,15 @@
+{
+  "_comment": "Manufacturer-provided data only. Flavor-level data lives in data/compliance/flavors/",
+  "verified": true,
+  "product_id": "alternative_session_5mg_lychee_sweet_tea",
+  "source": "manufacturer_provided",
+  "nutrition_facts": {
+    "serving_size": "1 can (355 mL)",
+    "servings_per_container": "1",
+    "calories": "FROM_MANUFACTURER",
+    "nutrients": []
+  },
+  "ingredients": "FROM_MANUFACTURER",
+  "qr_url": "https://AlternativeBev.com/lab-results",
+  "state_warnings": []
+}

@@ -1,0 +1,1 @@
+"""Syrup label panels."""

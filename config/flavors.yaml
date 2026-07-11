@@ -1,0 +1,10 @@
+# Flavor system — no fruit graphics, no illustrations
+
+flavors:
+  - id: lychee_sweet_tea
+    name: "LYCHEE SWEET TEA"
+    accent_color: champagne_gold
+
+  - id: passion_fruit
+    name: "PASSION FRUIT"
+    accent_color: deep_amber
